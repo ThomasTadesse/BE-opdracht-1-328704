@@ -9,8 +9,8 @@ class Homepages extends BaseController
          * Het $data-array geeft informatie mee aan de view-pagina
          */
         $data = [
-            'title' => 'Dit is de homepage!',
-            'name' => 'Mijn naam is Arjan de Ruijter'
+            'title' => 'Dit is de homepage',
+            'name' => 'Mijn naam is Thomas Tadesse'
         ];
 
         /**

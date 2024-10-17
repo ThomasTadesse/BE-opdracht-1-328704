@@ -1,27 +1,27 @@
 <?php
 
-class Countries extends BaseController
+class Products extends BaseController
 {
-    private $countryModel;
+    private $ProductModel;
 
     public function __construct()
     {
-        $this->countryModel = $this->model('Country');
+        $this->ProductModel = $this->model('Product');
     }
 
     public function index()
     {
         $data = [
-            'title' => 'Landen van de Wereld',
+            'title' => 'Overzicht Magazijn Jamin',
             'dataRows' => NULL,
             'message' => NULL,
             'messageColor' => NULL,
             'messageVisibility' => 'display:none'
         ];
 
-        $countries = $this->countryModel->getCountries();
+        $Products = $this->ProductModel->getProducts();
 
-        if (is_null($countries)) {
+        if (is_null($Products)) {
             //Foutmelding en in de tabel geen records
             $data['message'] = TRY_CATCH_ERROR;
             $data['messageColor'] = FORM_DANGER_COLOR;
@@ -30,14 +30,14 @@ class Countries extends BaseController
             
             header('Refresh:3; ' . URLROOT . '/homepages/index');
         } else {
-                $data['dataRows'] = $countries;
+                $data['dataRows'] = $Products;
         }       
 
-        $this->view('countries/index', $data);
+        $this->view('Products/index', $data);
     }
 
     /**
-     * Creates a new country.
+     * Creates a new Product.
      *
      * This method is responsible for rendering the create view and passing the necessary data to it.
      *
@@ -46,21 +46,25 @@ class Countries extends BaseController
     public function create()
     {
         $data = [
-            'title' => 'Voeg een nieuw land toe',
+            'title' => 'Voeg een nieuw product toe',
             'message' => '',
             'messageColor' => 'dark',
             'messageVisibility' => 'display:none;',
             'disableButton' => '',
-            'country' => '',
-            'capitalCity' => '',
-            'continent' => '',
-            'population' => '',
-            'zipcode' => '',
-            'countryError' => '',
-            'capitalCityError' => '',
-            'continentError' => '',
-            'populationError' => '',
-            'zipcodeError' => ''
+            'Product' => '',
+            'Naam' => '',
+            'Barcode' => '',
+            'IsActief' => '',
+            'Opmerking' => '',
+            'DatumAangemaakt' => '',
+            'DatumGewijzigd' => '',
+            'ProductError' => '',
+            'NaamError' => '',
+            'BarcodeError' => '',
+            'IsActiefError' => '',
+            'OpmerkingError' => '',
+            'DatumAangemaaktError' => '',
+            'DatumGewijzigdError' => ''
         ];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -72,27 +76,28 @@ class Countries extends BaseController
             /**
              * Doe de post-waarden in het $data array
              */
-            $data['country'] = trim($_POST['country']);
-            $data['capitalCity'] = trim($_POST['capitalCity']);
-            $data['continent'] = trim($_POST['continent']);
-            $data['population'] = trim($_POST['population']);
-            $data['zipcode'] = trim($_POST['zipcode']);
-
+            $data['Product'] = trim($_POST['Product']);
+            $data['Naam'] = trim($_POST['Naam']);
+            $data['Barcode'] = trim($_POST['Barcode']);
+            $data['IsActief'] = trim($_POST['IsActief']);
+            $data['Opmerking'] = trim($_POST['Opmerking']);
+            $data['DatumAangemaakt'] = trim($_POST['DatumAangemaakt']);
+            $data['DatumGewijzigd'] = trim($_POST['DatumGewijzigd']);
  
             /**
              * Valideer de formuliervelden
              */
-            $data = CountriesValidator::validateCountriesInputFields($data);
+            $data = ProductsValidator::validateProductsInputFields($data);
             
             /**
              * We checken of er geen Validatie Errors zijn
              */
             if ( $data['isValidView'] ) {
                 /**
-                 * Roep de createCountry methode aan van het countryModel object waardoor
+                 * Roep de createProduct methode aan van het ProductModel object waardoor
                  * de gegevens in de database worden opgeslagen
                  */
-                $result = $this->countryModel->createCountry($_POST);
+                $result = $this->ProductModel->createProduct($_POST);
 
                 /**
                  * Als er een fout is in de modelmethod dan wordt dit gelogd en gemeld
@@ -100,68 +105,74 @@ class Countries extends BaseController
                  */
                 if (is_null($result)) {
                     $data['messageVisibility'] = 'flex';
-                    $data['message'] = 'Er is fout opgetreden in de database, u kunt geen land toevoegen';
+                    $data['message'] = 'Er is fout opgetreden in de database, u kunt geen product toevoegen';
                     $data['messageColor'] = 'success';
                     $data['disableButton'] = 'disabled';
                 } else {
                     $data['messageVisibility'] = '';
-                    $data['message'] = 'Uw gegevens zijn opgeslagen. U wordt doorgestuurd naar de index-pagina.';
+                    $data['message'] = 'Uw gegevens zijn opgeslagen. U wordt doorgestuurd naar de overzicht-pagina.';
                     $data['messageColor'] = 'success';
 
                 }
                 /**
                  * Na het opslaan van de formulier wordt de gebruiker teruggeleid naar de index-pagina
                  */
-                header("Refresh:3; url=" . URLROOT . "/countries/index");
+                header("Refresh:3; url=" . URLROOT . "/Products/index");
             } else {
                 $data['messageVisibility'] = '';
                 $data['message'] = 'Er zijn één of meerdere velden niet goed ingevuld';
                 $data['messageColor'] = 'danger';
 
-                $this->view('countries/create', $data);
+                $this->view('Products/create', $data);
             }
         }
 
-        $this->view('countries/create', $data);
+        $this->view('Products/create', $data);
     }
 
-    public function update($countryId)
+    public function update($ProductId)
     {
-        $result = $this->countryModel->getCountry($countryId) ?? header("Refresh:3; url=" . URLROOT . "/countries/index");
+        $result = $this->ProductModel->getProduct($ProductId) ?? header("Refresh:3; url=" . URLROOT . "/Products/index");
 
         $data = [
-            'title' => 'Wijzig land',
+            'title' => 'Wijzig veld',
             'message' => is_null($result) ? 'Er is een fout opgetreden, wijzigen is niet mogelijk' : '',
             'messageVisibility' => is_null($result) ? 'flex' : 'none',
             'messageColor' => is_null($result) ? 'danger' : '',
             'disableButton' => is_null($result) ? 'disabled' : '',
             'Id' => $result->Id ?? '',
-            'country' => $result->Name ?? '-',
-            'capitalCity' => $result->CapitalCity ?? '-',
-            'continent' => $result->Continent ?? '-',
-            'population' => $result->Population ?? '-',
-            'zipcode' => $result->Zipcode ?? '-',
-            'countryError' => '',
-            'capitalCityError' => '',
-            'continentError' => '',
-            'populationError' => '',
-            'zipcodeError' => ''
+            'Product' => $result->Naam ?? '-',
+            'Naam' => $result->Naam ?? '-',
+            'Barcode' => $result->Barcode ?? '-',
+            'IsActief' => $result->IsActief ?? '-',
+            'Opmerking' => $result->Opmerking ?? '-',
+            'DatumAangemaakt' => $result->DatumAangemaakt ?? '-',
+            'DatumGewijzigd' => $result->DatumGewijzigd ?? '-',
+            'ProductError' => '',
+            'NaamError' => '',
+            'BarcodeError' => '',
+            'IsActiefError' => '',
+            'OpmerkingError' => '',
+            'DatumAangemaaktError' => '',
+            'DatumGewijzigdError' => ''
         ];
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            $data['country'] = trim($_POST['country']);
-            $data['capitalCity'] = trim($_POST['capitalCity']);
-            $data['continent'] = trim($_POST['continent']);
-            $data['population'] = trim($_POST['population']);
-            $data['zipcode'] = trim($_POST['zipcode']);
+            $data['Product'] = trim($_POST['Product']);
+            $data['Naam'] = trim($_POST['Naam']);
+            $data['Barcode'] = trim($_POST['Barcode']);
+            $data['IsActief'] = trim($_POST['IsActief']);
+            $data['Opmerking'] = trim($_POST['Opmerking']);
+            $data['DatumAangemaakt'] = trim($_POST['DatumAangemaakt']);
+            $data['DatumGewijzigd'] = trim($_POST['DatumGewijzigd']);
 
             /**
              * Valideer de formulierdata
              */
-            $data = CountriesValidator::validateCountriesInputFields($data);
+            $data = ProductsValidator::validateProductsInputFields($data);
 
             /**
              * Wanneer alle error-key values leeg zijn dan kunnen we de update uitvoeren
@@ -169,7 +180,7 @@ class Countries extends BaseController
 
             if ( $data['isValidView'])
             {
-                $result = $this->countryModel->updateCountry($_POST);
+                $result = $this->ProductModel->updateProduct($_POST);
 
                 if (is_null($result)) {
                     $data['messageVisibility'] = 'flex';
@@ -181,14 +192,14 @@ class Countries extends BaseController
                     $data['message'] = 'Het updaten is gelukt';
                     $data['messageColor'] = 'success';
                 }
-                header("Refresh:3; url=" . URLROOT . "/countries/index");
+                header("Refresh:3; url=" . URLROOT . "/Products/index");
             } else {
                 $data['messageVisibility'] = 'flex';
                 $data['message'] = 'U heeft enkele verkeerde waardes ingevuld';
                 $data['messageColor'] = 'danger';
             }
-            $this->view('countries/update', $data);            
-            // header("Refresh:3; url=" . URLROOT . "/countries/index");
+            $this->view('Products/update', $data);            
+            // header("Refresh:3; url=" . URLROOT . "/Products/index");
         }
             
             
@@ -196,25 +207,25 @@ class Countries extends BaseController
             
         
 
-        $this->view('countries/update', $data);
+        $this->view('Products/update', $data);
     }
 
-    public function delete($countryId)
+    public function delete($ProductId)
     {
-       $result = $this->countryModel->deleteCountry($countryId);       
+       $result = $this->ProductModel->deleteProduct($ProductId);       
 
        $data = [
-           'title' => 'Landen van de wereld',
+           'title' => 'Overzicht magazijn Jamin',
            'message' => is_null($result) ? 'Er is een fout opgetreden het record is niet verwijderd' : 'Het record is verwijderd, u wordt doorgestuurd naar het overzicht',
            'messageVisibility' => is_null($result) ? 'flex' : 'flex',
            'messageColor' => is_null($result) ? 'danger' : 'success',
        ];
 
-       header("Refresh:3; " . URLROOT . "/countries/index");
+       header("Refresh:3; " . URLROOT . "/Products/index");
 
-        $countries = $this->countryModel->getCountries();
+        $Products = $this->ProductModel->getProducts();
 
-        if (is_null($countries)) {
+        if (is_null($Products)) {
             //Foutmelding en in de tabel geen records
             $data['message'] = TRY_CATCH_ERROR;
             $data['messageColor'] = FORM_DANGER_COLOR;
@@ -223,9 +234,9 @@ class Countries extends BaseController
             
             header('Refresh:3; ' . URLROOT . '/homepages/index');
         } else {
-                $data['dataRows'] = $countries;
+                $data['dataRows'] = $Products;
         }       
 
-        $this->view('countries/index', $data);
+        $this->view('Products/index', $data);
     }
 } 
