@@ -1,6 +1,6 @@
 <?php
 
-class Country
+class Product
 {
     private $db;
 
@@ -14,17 +14,17 @@ class Country
     }
 
     /**
-     * Haal alle records op uit de Country-tabel
+     * Haal alle records op uit de Product-tabel
      */
-    public function getCountries()
+    public function getProducts()
     {
         try {
             /**
              * Maak een sql-query die de gewenste informatie opvraagt uit de database
-             * We gebruiken de stored procedure spGetCountries()
+             * We gebruiken de stored procedure spGetProducts()
              */
 
-            $sql = 'CALL spGetAllCountries()';
+            $sql = 'CALL spGetAllProducts()';
 
             /**
              * Prepare de query voor het PDO object
@@ -42,7 +42,7 @@ class Country
         }
     }
 
-    public function createCountry($postArrayData) 
+    public function createProduct($postArrayData) 
     {
         try {
             /**
@@ -50,12 +50,14 @@ class Country
              * wegschrijft naar de database
              */
             
-            $sql = 'CALL spCreateCountry(
-                :name, 
-                :capitalcity, 
-                :continent, 
-                :population, 
-                :zipcode
+            $sql = 'CALL spCreateProduct(
+                :naam,
+                :barcode,
+                :isactief,
+                :opmerking,
+                :datumaangemaakt,
+                :datumgewijzigd,
+                
             )';
     
              /**
@@ -66,11 +68,12 @@ class Country
             /**
              * We koppelen de waardes uit het formulier aan de parameters in de query
              */
-            $this->db->bind(':name', $postArrayData['country'], PDO::PARAM_STR);
-            $this->db->bind(':capitalcity', $postArrayData['capitalCity'], PDO::PARAM_STR);
-            $this->db->bind(':continent', $postArrayData['continent'], PDO::PARAM_STR);
-            $this->db->bind(':population', $postArrayData['population'], PDO::PARAM_INT);
-            $this->db->bind(':zipcode', $postArrayData['zipcode'], PDO::PARAM_STR);
+            $this->db->bind(':naam', $postArrayData['Product'], PDO::PARAM_STR);
+            $this->db->bind(':barcode', $postArrayData['barcode'], PDO::PARAM_STR);
+            $this->db->bind(':isactief', $postArrayData['isactief'], PDO::PARAM_INT);
+            $this->db->bind(':opmerking', $postArrayData['opmerking'], PDO::PARAM_STR);
+            $this->db->bind(':datumaangemaakt', $postArrayData['datumaangemaakt'], PDO::PARAM_STR);
+            $this->db->bind(':datumgewijzigd', $postArrayData['datumgewijzigd'], PDO::PARAM_STR);
     
             /**
              * Voer de query uit zodat de gegevens worden weggeschreven naar de database
@@ -82,15 +85,15 @@ class Country
         }
     }
 
-    public function getCountry($countryId)
+    public function getProduct($ProductId)
     {
         try {
 
-            $sql = 'CALL spSelectCountryById(:id)';
+            $sql = 'CALL spSelectProductById(:id)';
     
             $this->db->query($sql);
     
-            $this->db->bind(':id', $countryId, PDO::PARAM_INT);
+            $this->db->bind(':id', $ProductId, PDO::PARAM_INT);
     
             return $this->db->single();
 
@@ -101,26 +104,27 @@ class Country
 
     }
 
-    public function updateCountry($postArrayData)
+    public function updateProduct($postArrayData)
     {
         try {
-            $sql = 'CALL spUpdateCountryById(
+            $sql = 'CALL spUpdateProductById(
                         :id, 
-                        :name, 
-                        :capitalcity, 
-                        :continent, 
-                        :population, 
-                        :zipcode
+                        :naam,
+                        :barcode,
+                        :isactief,
+                        :opmerking,
+                        :datumaangemaakt,
+                        :datumgewijzigd
                     )';        
     
             $this->db->query($sql);
     
-            $this->db->bind(':name', $postArrayData['country'], PDO::PARAM_STR);
-            $this->db->bind(':capitalcity', $postArrayData['capitalCity'], PDO::PARAM_STR);
-            $this->db->bind(':continent', $postArrayData['continent'], PDO::PARAM_STR);
-            $this->db->bind(':population', $postArrayData['population'], PDO::PARAM_INT);
-            $this->db->bind(':zipcode', $postArrayData['zipcode'], PDO::PARAM_STR);
-            $this->db->bind(':id', $postArrayData['Id'], PDO::PARAM_INT);
+            $this->db->bind(':naam', $postArrayData['Product'], PDO::PARAM_STR);
+            $this->db->bind(':barcode', $postArrayData['barcode'], PDO::PARAM_STR);
+            $this->db->bind(':isactief', $postArrayData['isactief'], PDO::PARAM_INT);
+            $this->db->bind(':opmerking', $postArrayData['opmerking'], PDO::PARAM_STR);
+            $this->db->bind(':datumaangemaakt', $postArrayData['datumaangemaakt'], PDO::PARAM_STR);
+            $this->db->bind(':datumgewijzigd', $postArrayData['datumgewijzigd'], PDO::PARAM_STR);
     
             return $this->db->execute();        
         } catch (Exception $e) {
@@ -130,14 +134,14 @@ class Country
 
     }
 
-    public function deleteCountry($countryId)
+    public function deleteProduct($ProductId)
     {
         try {
             /**
              * Maak een sql-query die een record uit de database verwijdert
              */
     
-            $sql = 'CALL spDeleteCountryById(:id)';
+            $sql = 'CALL spDeleteProductById(:id)';
     
             /**
              * Prepare de query voor het PDO object
@@ -147,7 +151,7 @@ class Country
             /**
              * Koppel de parameter aan de query
              */
-            $this->db->bind(':id', $countryId, PDO::PARAM_INT);
+            $this->db->bind(':id', $ProductId, PDO::PARAM_INT);
     
             /**
              * Voer de query uit
