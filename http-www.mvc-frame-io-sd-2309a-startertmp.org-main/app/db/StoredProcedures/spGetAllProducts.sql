@@ -1,37 +1,38 @@
 /******************************************************
--- Doel: Opvragen van alle records uit de tabel country
+-- Doel: Opvragen van alle records uit de tabel Product
 -- Versie: 01
--- Datum: 26-09-2024
--- Auteur: Arjan de Ruijter
+-- Datum: 17-10-2024
+-- Auteur: Thomas Tadesse
 ******************************************************/
 
 -- Selecteer de juiste database voor je stored procedure
-use `mvcframework-io-sd-2309a-startertmp`;
+use `magazijn-jamin`;
 
 -- Verwijder de oude stored procedure
-DROP PROCEDURE IF EXISTS spGetAllCountries;
+DROP PROCEDURE IF EXISTS spGetAllProducts;
 
 -- Verander even tijdelijk de opdrachtprompt naar //
 DELIMITER //
 
-CREATE PROCEDURE spGetAllCountries()
+CREATE PROCEDURE spGetAllProducts()
 BEGIN
 
     SELECT  COUN.Id,
-            COUN.Name,
-            COUN.CapitalCity,
-            COUN.Continent,
-            COUN.Population,
-            COUN.Zipcode
-    FROM    Country AS COUN
-    ORDER BY COUN.Id ASC;
+            COUN.Naam,
+            COUN.Omschrijving,
+            COUN.IsActief,
+            COUN.Opmerking,
+            COUN.DatumAangemaakt,
+            COUN.DatumGewijzigd
+    FROM    Product AS COUN
+    ORDER BY COUN.Id DESC;
 
 END //
 DELIMITER ;
 
 /************* debug code stored procedure **************
 
-CALL spGetAllCountries();
+CALL spGetAllProducts();
 
 ********************************************************/
 

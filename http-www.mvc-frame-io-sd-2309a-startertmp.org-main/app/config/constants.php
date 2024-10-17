@@ -1,11 +1,9 @@
 <?php
 
-define('CONTINENTS', [
-    'Afrika', 
-    'Antarctica', 
-    'Azi&euml;', 
-    'Europa', 
-    'Noord-Amerika', 
-    'Zuid-Amerika', 
-    'Oceani&euml;'
+define('ALLERGEEN', [
+    'Gluten',
+    'Gelatine',
+    'AZO-Kleurstof',
+    'Lactose',
+    'Soja'
 ]);

@@ -1,34 +1,34 @@
 /******************************************************
--- Doel: Deleten van een record in de tabel Country op
+-- Doel: Deleten van een record in de tabel Product op
          basis van het Id
 *******************************************************
 -- Versie: 01
--- Datum: 26-09-2024
--- Auteur: Arjan de Ruijter
+-- Datum: 17-10-2024
+-- Auteur: Thomas Tadesse
 ******************************************************/
 
 -- Selecteer de juiste database voor je stored procedure
-use `mvcframework-io-sd-2309a-startertmp`;
+use `magazijn-jamin`;
 
 -- Verwijder de oude stored procedure
-DROP PROCEDURE IF EXISTS spDeleteCountryById;
+DROP PROCEDURE IF EXISTS spDeleteProductById;
 
 -- Verander even tijdelijk de opdrachtprompt naar //
 DELIMITER //
 
-CREATE PROCEDURE spDeleteCountryById(
+CREATE PROCEDURE spDeleteProductById(
     IN Id INT UNSIGNED
 )
 BEGIN
     DELETE  
-    FROM    Country AS COUN
+    FROM    Product AS COUN
     WHERE   COUN.Id = Id;
 END //
 DELIMITER ;
 
 /************* debug code stored procedure **************
 
-CALL spDeleteCountryById(2);
+CALL spDeleteProductById(2);
 
 ********************************************************/
 

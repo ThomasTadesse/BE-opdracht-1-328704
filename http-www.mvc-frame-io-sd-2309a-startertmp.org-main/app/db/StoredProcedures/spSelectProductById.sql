@@ -1,33 +1,35 @@
 /******************************************************
--- Doel: Updaten van een record in de tabel Country op
+-- Doel: Updaten van een record in de tabel Product op
          basis van het Id
 *******************************************************
 -- Versie: 01
--- Datum: 26-09-2024
--- Auteur: Arjan de Ruijter
+-- Datum: 17-10-2024
+-- Auteur: Thomas Tadesse
 ******************************************************/
 
 -- Selecteer de juiste database voor je stored procedure
-use `mvcframework-io-sd-2309a-startertmp`;
+use `magazijn-jamin`;
 
 -- Verwijder de oude stored procedure
-DROP PROCEDURE IF EXISTS spSelectCountryById;
+DROP PROCEDURE IF EXISTS spSelectProductById;
 
 -- Verander even tijdelijk de opdrachtprompt naar //
 DELIMITER //
 
-CREATE PROCEDURE spSelectCountryById(
+CREATE PROCEDURE spSelectProductById(
     IN Id INT UNSIGNED
 )
 BEGIN
 
     SELECT  COUN.Id,
-            COUN.Name,
-            COUN.CapitalCity,
-            COUN.Continent,
-            COUN.Population,
-            COUN.Zipcode
-    FROM    Country AS COUN
+            COUN.Naam,
+            COUN.Omschrijving,
+            COUN.Prijs,
+            COUN.IsActief,
+            COUN.Opmerking,
+            COUN.DatumAangemaakt,
+            COUN.DatumGewijzigd
+    FROM    Product AS COUN
     WHERE   COUN.Id = Id;
 
 END //
@@ -35,7 +37,7 @@ DELIMITER ;
 
 /************* debug code stored procedure **************
 
-CALL spSelectCountryById(2);
+CALL spSelectProductById(2);
 
 ********************************************************/
 
