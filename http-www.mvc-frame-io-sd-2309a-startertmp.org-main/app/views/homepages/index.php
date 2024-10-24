@@ -6,11 +6,11 @@
 
         <div class="col-2"></div>
 
-        <div class="col-8">
+        <div class="col">
 
             <h3><?php echo $data['title']; ?></h3>
 
-            <a href="<?= URLROOT; ?>/Products/index">Overzicht magazijn Jamin</a> |
+            <a href="<?= URLROOT; ?>/Products/index">Overzicht magazijn Jamin</a>
 
         </div>
         
