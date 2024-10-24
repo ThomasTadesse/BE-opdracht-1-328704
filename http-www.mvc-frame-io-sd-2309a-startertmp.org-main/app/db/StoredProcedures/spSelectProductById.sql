@@ -21,15 +21,15 @@ CREATE PROCEDURE spSelectProductById(
 )
 BEGIN
 
-    SELECT  COUN.Id,
-            COUN.Naam,
-            COUN.Prijs,
-            COUN.IsActief,
-            COUN.Opmerking,
-            COUN.DatumAangemaakt,
-            COUN.DatumGewijzigd
-    FROM    Product AS COUN
-    WHERE   COUN.Id = Id;
+    SELECT  PROD.Id,
+            PROD.Naam,
+            PROD.Prijs,
+            PROD.IsActief,
+            PROD.Opmerking,
+            PROD.DatumAangemaakt,
+            PROD.DatumGewijzigd
+    FROM    Product AS PROD
+    WHERE   PROD.Id = Id;
 
 END //
 DELIMITER ;

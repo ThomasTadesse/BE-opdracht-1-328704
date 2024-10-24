@@ -30,8 +30,6 @@ class Product
              */
             $this->db->query($sql);
             
-            // var_dump($this->db->resultSet());
-            // echo "Hoi";exit();
             /**
              * Geef de opgehaalde informatie terug aan de controller
              */

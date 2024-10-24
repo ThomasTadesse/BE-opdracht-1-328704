@@ -21,8 +21,8 @@ CREATE PROCEDURE spDeleteProductById(
 )
 BEGIN
     DELETE  
-    FROM    Product AS COUN
-    WHERE   COUN.Id = Id;
+    FROM    Product AS PROD
+    WHERE   PROD.Id = Id;
 END //
 DELIMITER ;
 

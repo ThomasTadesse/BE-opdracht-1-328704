@@ -17,15 +17,19 @@ DELIMITER //
 CREATE PROCEDURE spGetAllProducts()
 BEGIN
 
-    SELECT  COUN.Id,
-            COUN.Naam,
-            COUN.Barcode,
-            COUN.IsActief,
-            COUN.Opmerking,
-            COUN.DatumAangemaakt,
-            COUN.DatumGewijzigd
-    FROM    Product AS COUN
-    ORDER BY COUN.Id DESC;
+    SELECT  PROD.Id         AS ProductId,
+            PROD.Naam,
+            PROD.Barcode,
+            MAGA.Id         AS MagazijnId,
+            MAGA.ProductId  AS MagazijnProductId,
+            PROD.IsActief,
+            PROD.Opmerking,
+            PROD.DatumAangemaakt,
+            PROD.DatumGewijzigd
+    FROM    Product AS PROD
+
+    INNER JOIN Magazijn AS MAGA
+    ORDER BY PROD.Id DESC;
 
 END //
 DELIMITER ;

@@ -22,8 +22,8 @@
     </div>
 
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-4"></div>
+        <div class="col">
             <table class="table table-hover">
                 <thead>
                     <tr>

@@ -26,14 +26,14 @@ CREATE PROCEDURE spUpdateProductById(
     IN DatumGewijzigd DATETIME(6)
 )
 BEGIN
-    UPDATE  Product AS  COUN
-    SET     COUN.Naam = Naam,
-            COUN.Barcode = Barcode,
-            COUN.IsActief = IsActief,
-            COUN.Opmerking = Opmerking,
-            COUN.DatumAangemaakt = DatumAangemaakt,
-            COUN.DatumGewijzigd = DatumGewijzigd
-    WHERE   COUN.Id = Id;
+    UPDATE  Product AS  PROD
+    SET     PROD.Naam = Naam,
+            PROD.Barcode = Barcode,
+            PROD.IsActief = IsActief,
+            PROD.Opmerking = Opmerking,
+            PROD.DatumAangemaakt = DatumAangemaakt,
+            PROD.DatumGewijzigd = DatumGewijzigd
+    WHERE   PROD.Id = Id;
 END //
 DELIMITER ;
 
