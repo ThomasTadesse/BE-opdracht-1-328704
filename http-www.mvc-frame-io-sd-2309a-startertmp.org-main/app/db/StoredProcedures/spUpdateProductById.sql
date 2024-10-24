@@ -19,7 +19,7 @@ DELIMITER //
 CREATE PROCEDURE spUpdateProductById(
     IN Id           INT UNSIGNED,
     IN Naam         VARCHAR(255),
-    IN Omschrijving VARCHAR(255),
+    IN Barcode VARCHAR(255),
     IN IsActief     BIT(1),
     IN Opmerking    VARCHAR(255),
     IN DatumAangemaakt DATETIME(6),
@@ -28,7 +28,7 @@ CREATE PROCEDURE spUpdateProductById(
 BEGIN
     UPDATE  Product AS  COUN
     SET     COUN.Naam = Naam,
-            COUN.Omschrijving = Omschrijving,
+            COUN.Barcode = Barcode,
             COUN.IsActief = IsActief,
             COUN.Opmerking = Opmerking,
             COUN.DatumAangemaakt = DatumAangemaakt,

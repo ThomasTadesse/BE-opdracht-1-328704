@@ -23,7 +23,6 @@ BEGIN
 
     SELECT  COUN.Id,
             COUN.Naam,
-            COUN.Omschrijving,
             COUN.Prijs,
             COUN.IsActief,
             COUN.Opmerking,

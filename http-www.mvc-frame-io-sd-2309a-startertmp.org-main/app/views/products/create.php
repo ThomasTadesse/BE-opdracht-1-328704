@@ -1,8 +1,5 @@
 <?php require_once APPROOT . '/views/includes/header.php'; ?>
 
-
-<!-- Maak een formulier om gegevens in de Product tabel te kunnen opslaan -->
-
 <div class="container">
   <div class="row mt-3 text-center" style='<?= $data['messageVisibility']; ?>'>
         <div class="col-3"></div>

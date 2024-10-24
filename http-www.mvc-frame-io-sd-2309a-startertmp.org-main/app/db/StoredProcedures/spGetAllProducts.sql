@@ -19,7 +19,7 @@ BEGIN
 
     SELECT  COUN.Id,
             COUN.Naam,
-            COUN.Opmerking,
+            COUN.Barcode,
             COUN.IsActief,
             COUN.Opmerking,
             COUN.DatumAangemaakt,

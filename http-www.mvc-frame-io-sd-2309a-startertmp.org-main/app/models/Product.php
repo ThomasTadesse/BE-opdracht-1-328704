@@ -23,14 +23,15 @@ class Product
              * Maak een sql-query die de gewenste informatie opvraagt uit de database
              * We gebruiken de stored procedure spGetProducts()
              */
-
             $sql = 'CALL spGetAllProducts()';
-
+            
             /**
              * Prepare de query voor het PDO object
              */
             $this->db->query($sql);
-
+            
+            // var_dump($this->db->resultSet());
+            // echo "Hoi";exit();
             /**
              * Geef de opgehaalde informatie terug aan de controller
              */
