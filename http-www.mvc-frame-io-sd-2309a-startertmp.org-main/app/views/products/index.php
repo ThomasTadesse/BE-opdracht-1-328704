@@ -55,20 +55,20 @@
 
                                         
                                         <td class='text-center'>
-                                            <a href='<?= URLROOT  ?>/products/view/<?= $product->Id ?>'>
+                                            <a href='<?= URLROOT  ?>/products/view/<?= isset($product->id) ? $product->id : '#' ?>'>
                                                 <i class='bi bi-info-circle'></i>
                                             </a>
                                         </td>
                                         <td class='text-center'>
-                                            <a href='<?= URLROOT  ?>/products/update/<?= $product->Id ?>'>
+                                            <a href='<?= URLROOT  ?>/products/update/<?= isset($product->id) ? $product->id : '#' ?>'>
                                                 <i class='bi bi-pencil-square'></i>
                                             </a>
                                         </td>
                                         <td class='text-center'>
-                                            <a href='<?= URLROOT ?>/products/delete/<?= $product->Id ?>'>
+                                            <a href='<?= URLROOT ?>/products/delete/<?= isset($product->id) ? $product->id : '#' ?>'>
                                                 <i class='bi bi-trash'></i>
                                             </a>
-                                        </td>         
+                                        </td>       
 
                                     </tr>
                                 <?php }} ?>

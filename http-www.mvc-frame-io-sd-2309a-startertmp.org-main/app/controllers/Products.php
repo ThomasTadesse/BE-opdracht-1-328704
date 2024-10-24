@@ -31,8 +31,8 @@ class Products extends BaseController
             header('Refresh:3; ' . URLROOT . '/homepages/index');
         } else {
                 $data['dataRows'] = $Products;
-        }       
-
+        }
+        
         $this->view('Products/index', $data);
     }
 
@@ -239,4 +239,26 @@ class Products extends BaseController
 
         $this->view('Products/index', $data);
     }
+
+    public function spGetAllProducts()
+    {
+        $Products = $this->ProductModel->getProducts();
+
+        if (is_null($Products)) {
+            //Foutmelding en in de tabel geen records
+            $data['message'] = TRY_CATCH_ERROR;
+            $data['messageColor'] = FORM_DANGER_COLOR;
+            $data['messageVisibility'] = 'flex';
+            $data['dataRows'] = NULL;
+            
+            header('Refresh:3; ' . URLROOT . '/homepages/index');
+        } else {
+                $data['dataRows'] = $Products;
+        }
+        
+        $sql = "CALL spGetAllProducts()";
+
+        $this->view('Products/index', $data);
+    }
+    
 } 

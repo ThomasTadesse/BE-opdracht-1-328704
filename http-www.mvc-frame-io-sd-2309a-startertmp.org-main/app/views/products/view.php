@@ -5,7 +5,7 @@
         <div class="col-2"></div>
         <div class="col-8 text-center">
             <div class="alert alert-success" role="alert">
-                Bericht hier
+                Product is toegevoegd
             </div>
         </div>
         <div class="col-2"></div>
@@ -14,8 +14,8 @@
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">
-            <h3>Titel hier</h3>
-            <p><a href="path_to_create_product">Nieuw land toevoegen</a></p>
+            <h3>Product overzicht</h3>
+            <p><a href="products/create">Nieuw product toevoegen</a></p>
         </div>
         <div class="col-2"></div>
     </div>
