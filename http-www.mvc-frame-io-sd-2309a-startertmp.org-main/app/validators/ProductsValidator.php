@@ -27,11 +27,11 @@ class ProductsValidator
         }
 
         if (isset($data['DatumAangemaakt']) && !strtotime($data['DatumAangemaakt'])) {
-            $data['DatumAangemaaktError'] = "DatumAangemaakt moet een geldige datetime string zijn";
+            $data['DatumAangemaaktError'] = "Datum moet een geldige date zijn";
         }
 
         if (isset($data['DatumGewijzigd']) && !strtotime($data['DatumGewijzigd'])) {
-            $data['DatumGewijzigdError'] = "DatumGewijzigd moet een geldige datetime string zijn";
+            $data['DatumGewijzigdError'] = "Datum moet een geldige date zijn";
         }
 
         if (

@@ -17,32 +17,32 @@ function logger($line, $method, $file, $error)
      * We gaan de tijd toevoegen waarop de error plaatsvond
      */
     date_default_timezone_set('Europe/Amsterdam');
-    $time = "Datum/tijd: " . date('d-m-Y H:i:s', time()) . "\t";
+    $time = "Datum/tijd: " . date('d-m-Y H:i:s', time()) . "\r";
 
     /**
      * De error uit de code
      */
-    $error = "De error is: " . $error . "\t";
+    $error = "De error is: " . $error . "\r";
 
     /**
      * Het ip-adres van degene die de error veroorzaakt
      */
-    $remote_ip = "Remote IP-adres: " . $_SERVER['REMOTE_ADDR'] . "\t";
+    $remote_ip = "Remote IP-adres: " . $_SERVER['REMOTE_ADDR'] . "\r";
 
     /**
      * Filename waar de error heeft plaatsgevonden.
      */
-    $filename = "Filename: " . $file . "\t";
+    $filename = "Filename: " . $file . "\r";
 
     /**
      * Methodname waar de error heeft plaatsgevonden.
      */
-    $methodname = "Methodname: " . $method . "\t";
+    $methodname = "Methodname: " . $method . "\r";
 
     /**
      * Regelnummer waar de fout heeft plaatsgevonden
      */
-    $linenumber = "Linenumber: " . $line . "\t";
+    $linenumber = "Linenumber: " . $line . "\r";
 
     /**
      * Regel met info over de error die wordt opgeslagen in het log-bestand
