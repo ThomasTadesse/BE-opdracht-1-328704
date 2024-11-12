@@ -15,7 +15,7 @@
         <div class="col-2"></div>
         <div class="col-8">
             <h3><?= $data['title']; ?></h3>
-            <p><a href="<?= URLROOT; ?>/products/create" class="btn btn-primary">Nieuw product toevoegen</a></p>
+            <p><a href="<?= URLROOT; ?>/products/create" class="btn btn-primary mt-3 mb-3">Nieuw product toevoegen</a></p>
         </div>
         <div class="col-2"></div>
     </div>
@@ -66,7 +66,7 @@
                         <?php }} ?>
                 </tbody>
             </table>
-            <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-secondary">Homepage</a>
+            <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-secondary mb-3">Homepage</a>
         </div>
         <div class="col-2"></div>
     </div>
