@@ -1,7 +1,7 @@
 <?php require_once APPROOT . '/views/includes/header.php'; ?>
 
 <div class="container">
-    <div class="row mt-3" style='<?= $data['messageVisibility']; ?>'>
+    <div class="row mt-3 <?= $data['messageVisibility']; ?>">
         <div class="col-2"></div>
         <div class="col-8 text-center">
             <div class="alert alert-<?= $data['messageColor']; ?>" role="alert">
@@ -15,7 +15,7 @@
         <div class="col-2"></div>
         <div class="col-8">
             <h3><?= $data['title']; ?></h3>
-            <p><a href="<?= URLROOT; ?>/products/create">Nieuw product toevoegen</a></p>
+            <p><a href="<?= URLROOT; ?>/products/create" class="btn btn-primary">Nieuw product toevoegen</a></p>
         </div>
         <div class="col-2"></div>
     </div>
@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-4"></div>
         <div class="col">
-            <table class="table table-hover">
+            <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>Barcode</th>
@@ -45,17 +45,8 @@
                             <tr>
                                 <td><?= $product->Barcode ?></td>
                                 <td><?= $product->Naam ?></td>
-                                
-                                <!-- <td><?= $product->Verpakkingseenheid ?></td>
-                                <td><?= $product->AantalAanwezig ?></td> -->
-
-                                <td>
-                                    <p>hallo</p>
-                                </td>
-                                <td>
-                                    <p>hallo deel 2</p>
-                                </td>
-
+                                <td><?= $product->Verpakkingseenheid ?></td>
+                                <td><?= $product->AantalAanwezig ?></td>
                                 <td class='text-center'>
                                     <a href='<?= URLROOT ?>/products/view/<?= isset($product->id) ? $product->id : '#' ?>'>
                                         <i class='bi bi-info-circle'></i>
@@ -75,7 +66,7 @@
                         <?php }} ?>
                 </tbody>
             </table>
-            <a href="<?= URLROOT; ?>/homepages/index">Homepage</a>
+            <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-secondary">Homepage</a>
         </div>
         <div class="col-2"></div>
     </div>

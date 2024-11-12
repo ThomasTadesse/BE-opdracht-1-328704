@@ -36,8 +36,9 @@ class Product
             return $this->db->resultSet();
 
         } catch (Exception $e) {
-            // Behandel de uitzondering hier, bijvoorbeeld loggen of een foutmelding weergeven
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            // Debugging: Log the exception message
+            error_log("Exception in getProducts: " . $e->getMessage());
         }
     }
 
@@ -52,11 +53,12 @@ class Product
             $sql = 'CALL spCreateProduct(
                 :naam,
                 :barcode,
+                :verpakkingseenheid,
+                :aantalAanwezig,
                 :isactief,
                 :opmerking,
                 :datumaangemaakt,
-                :datumgewijzigd,
-                
+                :datumgewijzigd
             )';
     
              /**
@@ -69,6 +71,8 @@ class Product
              */
             $this->db->bind(':naam', $postArrayData['Product'], PDO::PARAM_STR);
             $this->db->bind(':barcode', $postArrayData['barcode'], PDO::PARAM_STR);
+            $this->db->bind(':verpakkingseenheid', $postArrayData['Verpakkingseenheid'], PDO::PARAM_STR);
+            $this->db->bind(':aantalAanwezig', $postArrayData['AantalAanwezig'], PDO::PARAM_INT);
             $this->db->bind(':isactief', $postArrayData['isactief'], PDO::PARAM_INT);
             $this->db->bind(':opmerking', $postArrayData['opmerking'], PDO::PARAM_STR);
             $this->db->bind(':datumaangemaakt', $postArrayData['datumaangemaakt'], PDO::PARAM_STR);
@@ -79,8 +83,9 @@ class Product
              */
             return $this->db->execute();
         } catch (Exception $e) {
-            // Behandel de uitzondering hier, bijvoorbeeld loggen of een foutmelding weergeven
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            // Debugging: Log the exception message
+            error_log("Exception in createProduct: " . $e->getMessage());
         }
     }
 
@@ -97,8 +102,9 @@ class Product
             return $this->db->single();
 
         } catch (Exception $e) {
-            // Behandel de uitzondering hier, bijvoorbeeld loggen of een foutmelding weergeven
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            // Debugging: Log the exception message
+            error_log("Exception in getProduct: " . $e->getMessage());
         }
 
     }
@@ -110,6 +116,8 @@ class Product
                         :id, 
                         :naam,
                         :barcode,
+                        :verpakkingseenheid,
+                        :aantalAanwezig,
                         :isactief,
                         :opmerking,
                         :datumaangemaakt,
@@ -120,6 +128,8 @@ class Product
     
             $this->db->bind(':naam', $postArrayData['Product'], PDO::PARAM_STR);
             $this->db->bind(':barcode', $postArrayData['barcode'], PDO::PARAM_STR);
+            $this->db->bind(':verpakkingseenheid', $postArrayData['Verpakkingseenheid'], PDO::PARAM_STR);
+            $this->db->bind(':aantalAanwezig', $postArrayData['AantalAanwezig'], PDO::PARAM_INT);
             $this->db->bind(':isactief', $postArrayData['isactief'], PDO::PARAM_INT);
             $this->db->bind(':opmerking', $postArrayData['opmerking'], PDO::PARAM_STR);
             $this->db->bind(':datumaangemaakt', $postArrayData['datumaangemaakt'], PDO::PARAM_STR);
@@ -127,8 +137,9 @@ class Product
     
             return $this->db->execute();        
         } catch (Exception $e) {
-            // Behandel de uitzondering hier, bijvoorbeeld loggen of een foutmelding weergeven
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            // Debugging: Log the exception message
+            error_log("Exception in updateProduct: " . $e->getMessage());
         }
 
     }
@@ -157,9 +168,12 @@ class Product
              */ 
             return $this->db->execute();
         } catch (Exception $e) {
-            // Behandel de uitzondering hier, bijvoorbeeld loggen of een foutmelding weergeven
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            // Debugging: Log the exception message
+            error_log("Exception in deleteProduct: " . $e->getMessage());
         }
     }
 
 }
+
+logger(__LINE__, __FUNCTION__, __FILE__, "Test error message");

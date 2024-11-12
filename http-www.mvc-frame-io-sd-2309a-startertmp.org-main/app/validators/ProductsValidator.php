@@ -18,9 +18,25 @@ class ProductsValidator
             $data['BarcodeError'] = "De barcode moet precies 13 tekens lang zijn";
         }
 
+        if (empty($data['Verpakkingseenheid'])) {
+            $data['VerpakkingseenheidError'] = "U bent verplicht een verpakkingseenheid in te vullen";
+        }
+        if (!is_numeric($data['Verpakkingseenheid'])) {
+            $data['VerpakkingseenheidError'] = "De verpakkingseenheid moet een nummer zijn";
+        }
+
+        if (empty($data['AantalAanwezig'])) {
+            $data['AantalAanwezigError'] = "U bent verplicht een aantal aanwezig in te vullen";
+        }
+        if (!is_numeric($data['AantalAanwezig'])) {
+            $data['AantalAanwezigError'] = "Het aantal aanwezig moet een nummer zijn";
+        }
+
         if (
             empty($data['ProductError']) 
             && empty($data['BarcodeError'])
+            && empty($data['VerpakkingseenheidError'])
+            && empty($data['AantalAanwezigError'])
         ) {
             $data['isValidView'] = true;
         } else {

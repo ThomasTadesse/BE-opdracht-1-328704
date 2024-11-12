@@ -27,6 +27,7 @@ class Products extends BaseController
             $data['messageColor'] = FORM_DANGER_COLOR;
             $data['messageVisibility'] = 'flex';
             $data['dataRows'] = NULL;
+            logger(__LINE__, __METHOD__, __FILE__, TRY_CATCH_ERROR);
             
             header('Refresh:3; ' . URLROOT . '/homepages/index');
         } else {
@@ -108,6 +109,7 @@ class Products extends BaseController
                     $data['message'] = 'Er is fout opgetreden in de database, u kunt geen product toevoegen';
                     $data['messageColor'] = 'success';
                     $data['disableButton'] = 'disabled';
+                    logger(__LINE__, __METHOD__, __FILE__, 'Database error: cannot create product');
                 } else {
                     $data['messageVisibility'] = '';
                     $data['message'] = 'Uw gegevens zijn opgeslagen. U wordt doorgestuurd naar de overzicht-pagina.';
@@ -187,6 +189,7 @@ class Products extends BaseController
                     $data['message'] = 'Het updaten is niet gelukt';
                     $data['messageColor'] = 'danger';
                     $data['disableButton'] = 'disabled';
+                    logger(__LINE__, __METHOD__, __FILE__, 'Database error: cannot update product');
                 } else {
                     $data['messageVisibility'] = 'flex';
                     $data['message'] = 'Het updaten is gelukt';
@@ -220,6 +223,10 @@ class Products extends BaseController
            'messageVisibility' => is_null($result) ? 'flex' : 'flex',
            'messageColor' => is_null($result) ? 'danger' : 'success',
        ];
+
+       if (is_null($result)) {
+           logger(__LINE__, __METHOD__, __FILE__, 'Database error: cannot delete product');
+       }
 
        header("Refresh:3; " . URLROOT . "/Products/index");
 
@@ -261,4 +268,4 @@ class Products extends BaseController
         $this->view('Products/index', $data);
     }
     
-} 
+}

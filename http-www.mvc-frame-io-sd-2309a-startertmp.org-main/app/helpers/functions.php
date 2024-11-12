@@ -1,5 +1,8 @@
 <?php
 
+// Enable error reporting for debugging
+error_reporting(0);
+
 /**
  * Functie voor het loggen van de errors die ontstaan door try-catch
  * De volgende zaken worden gelogd
@@ -13,57 +16,47 @@
 
 function logger($line, $method, $file, $error)
 {
-    /**
-     * We gaan de tijd toevoegen waarop de error plaatsvond
-     */
+    // Debugging: Check if the function is called
+    error_log("Logger function called");
+
+    // Set the timezone
     date_default_timezone_set('Europe/Amsterdam');
     $time = "Datum/tijd: " . date('d-m-Y H:i:s', time()) . "\r";
 
-    /**
-     * De error uit de code
-     */
+    // Prepare error details
     $error = "De error is: " . $error . "\r";
-
-    /**
-     * Het ip-adres van degene die de error veroorzaakt
-     */
     $remote_ip = "Remote IP-adres: " . $_SERVER['REMOTE_ADDR'] . "\r";
-
-    /**
-     * Filename waar de error heeft plaatsgevonden.
-     */
     $filename = "Filename: " . $file . "\r";
-
-    /**
-     * Methodname waar de error heeft plaatsgevonden.
-     */
     $methodname = "Methodname: " . $method . "\r";
-
-    /**
-     * Regelnummer waar de fout heeft plaatsgevonden
-     */
     $linenumber = "Linenumber: " . $line . "\r";
-
-    /**
-     * Regel met info over de error die wordt opgeslagen in het log-bestand
-     */
     $content = $time . $remote_ip . $error . $filename . $methodname . $linenumber . "\r";
 
-    /**
-     * Hier definiëren we een logbestand en het pad ernaartoe
-     */
+    // Define the log file path
     $pathToLogFile = APPROOT . "/logs/nonfunctionallog.txt";
+    error_log("Log file path: " . $pathToLogFile);
 
-    /**
-     * Check of het bestand bestaat. Als dat niet zo is dan wordt het bestand aangemaakt
-     * en er wordt een kopje ingezet Non Functional Log
-     */
-    if (!file_exists($pathToLogFile)) {
-        file_put_contents($pathToLogFile, "Non Functional Log\r");
+    // Ensure the log directory exists
+    $logDir = dirname($pathToLogFile);
+    if (!is_dir($logDir)) {
+        error_log("Log directory does not exist. Creating directory: " . $logDir);
+        if (!mkdir($logDir, 0777, true)) {
+            error_log("Failed to create log directory: " . $logDir);
+            return;
+        }
     }
 
-    /**
-     * Hier wordt de error weggeschreven in het log-bestand op een nieuwe regel
-     */
-    file_put_contents($pathToLogFile, $content, FILE_APPEND);
+    // Check if the log file exists
+    if (!file_exists($pathToLogFile)) {
+        error_log("Log file does not exist. Creating file: " . $pathToLogFile);
+        if (file_put_contents($pathToLogFile, "Non Functional Log\r") === false) {
+            error_log("Failed to create log file: " . $pathToLogFile);
+            return;
+        }
+    }
+
+    // Write the error to the log file
+    error_log("Writing to log file: " . $pathToLogFile);
+    if (file_put_contents($pathToLogFile, $content, FILE_APPEND) === false) {
+        error_log("Failed to write to log file: " . $pathToLogFile);
+    }
 }

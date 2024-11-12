@@ -1,1 +1,9 @@
-Non Functional Log
+Non Functional LogDatum/tijd: 12-11-2024 12:57:17
+
+Datum/tijd: 12-11-2024 12:57:39
+Remote IP-adres: ::1
+De error is: Test error message
+Filename: D:\Werk_NIET_TE_HARD\L2\User Stories Realiseren\OP1\http-www.mvc-frame-io-sd-2309a-startertmp.org-main\app\models\Product.php
+Methodname: 
+Linenumber: 179
+
