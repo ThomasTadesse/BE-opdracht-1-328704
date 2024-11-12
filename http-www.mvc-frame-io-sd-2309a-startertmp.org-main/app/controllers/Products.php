@@ -84,6 +84,8 @@ class Products extends BaseController
             $data['Opmerking'] = trim($_POST['Opmerking']);
             $data['DatumAangemaakt'] = trim($_POST['DatumAangemaakt']);
             $data['DatumGewijzigd'] = trim($_POST['DatumGewijzigd']);
+            $data['Verpakkingseenheid'] = trim($_POST['Verpakkingseenheid']);
+            $data['AantalAanwezig'] = trim($_POST['AantalAanwezig']);
  
             /**
              * Valideer de formuliervelden
@@ -156,7 +158,9 @@ class Products extends BaseController
             'IsActiefError' => '',
             'OpmerkingError' => '',
             'DatumAangemaaktError' => '',
-            'DatumGewijzigdError' => ''
+            'DatumGewijzigdError' => '',
+            'Verpakkingseenheid' => $result->Verpakkingseenheid ?? '-',
+            'AantalAanwezig' => $result->AantalAanwezig ?? '-'
         ];
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {

@@ -20,15 +20,12 @@ BEGIN
     SELECT  PROD.Id         AS ProductId,
             PROD.Naam,
             PROD.Barcode,
-            MAGA.Id         AS MagazijnId,
-            MAGA.ProductId  AS MagazijnProductId,
             PROD.IsActief,
             PROD.Opmerking,
             PROD.DatumAangemaakt,
             PROD.DatumGewijzigd
     FROM    Product AS PROD
 
-    INNER JOIN Magazijn AS MAGA
     ORDER BY PROD.Id DESC;
 
 END //
@@ -39,6 +36,3 @@ DELIMITER ;
 CALL spGetAllProducts();
 
 ********************************************************/
-
-
-

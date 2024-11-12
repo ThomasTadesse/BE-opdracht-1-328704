@@ -65,7 +65,6 @@
                 </div>
             </div>
 
-
             <div class="mb-3">
                 <label for="inputisActief" class="form-label">Y/N:</label>
                 <input name="isActief" type="boolean" class="form-control" id="inputisActief" placeholder="True of False" value="<?= $data['isActief']; ?>">
@@ -86,6 +85,21 @@
             
             </div>
 
+            <div class="mb-3">
+                <label for="inputNameVerpakkingseenheid" class="form-label">Verpakkingseenheid:</label>
+                <input name="Verpakkingseenheid" type="text" class="form-control" id="inputNameVerpakkingseenheid" placeholder="Vul hier de verpakkingseenheid in" value="<?= $data['Verpakkingseenheid']; ?>">
+                <div class="error">
+                    <?= $data['VerpakkingseenheidError']; ?>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="inputNameAantalAanwezig" class="form-label">Aantal Aanwezig:</label>
+                <input name="AantalAanwezig" type="text" class="form-control" id="inputNameAantalAanwezig" placeholder="Vul hier het aantal aanwezig in" value="<?= $data['AantalAanwezig']; ?>">
+                <div class="error">
+                    <?= $data['AantalAanwezigError']; ?>
+                </div>
+            </div>
+
             <div class="d-grid">
                 <button type="submit" class="btn btn-success" <?= $data['disableButton']; ?> >Sla op</button>
             </div>
@@ -103,11 +117,5 @@
     <div class="col-3"></div>
   </div>
 </div>
-
-
-
-
-
-
 
 <?php require_once APPROOT . '/views/includes/footer.php'; ?>

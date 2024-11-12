@@ -27,6 +27,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="Verpakkingseenheid">Verpakkingseenheid:</label>
+                    <input type="text" class="form-control" name="Verpakkingseenheid" value="<?= $data['product']->Verpakkingseenheid; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="AantalAanwezig">Aantal Aanwezig:</label>
+                    <input type="text" class="form-control" name="AantalAanwezig" value="<?= $data['product']->AantalAanwezig; ?>" required>
+                </div>
+
+                <div class="form-group">
                     <label for="IsActief">Actief:</label>
                     <select class="form-control" name="IsActief">
                         <option value="1" <?= $data['product']->IsActief == 1 ? 'selected' : ''; ?>>Ja</option>
