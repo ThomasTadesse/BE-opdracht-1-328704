@@ -23,7 +23,9 @@ CREATE PROCEDURE spUpdateProductById(
     IN IsActief     BIT(1),
     IN Opmerking    VARCHAR(255),
     IN DatumAangemaakt DATETIME(6),
-    IN DatumGewijzigd DATETIME(6)
+    IN DatumGewijzigd DATETIME(6),
+    IN Verpakkingseenheid DECIMAL(5,2),
+    IN AantalAanwezig INT
 )
 BEGIN
     UPDATE  Product AS  PROD
@@ -32,7 +34,9 @@ BEGIN
             PROD.IsActief = IsActief,
             PROD.Opmerking = Opmerking,
             PROD.DatumAangemaakt = DatumAangemaakt,
-            PROD.DatumGewijzigd = DatumGewijzigd
+            PROD.DatumGewijzigd = DatumGewijzigd,
+            PROD.Verpakkingseenheid = Verpakkingseenheid,
+            PROD.AantalAanwezig = AantalAanwezig
     WHERE   PROD.Id = Id;
 END //
 DELIMITER ;

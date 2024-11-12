@@ -21,7 +21,9 @@ CREATE PROCEDURE spCreateProduct(
     IN IsActief     BIT(1),
     IN Opmerking    VARCHAR(255),
     IN DatumAangemaakt DATETIME(6),
-    IN DatumGewijzigd DATETIME(6)
+    IN DatumGewijzigd DATETIME(6),
+    IN Verpakkingseenheid DECIMAL(5,2),
+    IN AantalAanwezig INT
 )
 BEGIN
 
@@ -31,14 +33,18 @@ BEGIN
         IsActief,
         Opmerking,
         DatumAangemaakt,
-        DatumGewijzigd
+        DatumGewijzigd,
+        Verpakkingseenheid,
+        AantalAanwezig
     ) VALUES (
         Naam,
         Barcode,
         IsActief,
         Opmerking,
         DatumAangemaakt,
-        DatumGewijzigd
+        DatumGewijzigd,
+        Verpakkingseenheid,
+        AantalAanwezig
     );
 
 END //

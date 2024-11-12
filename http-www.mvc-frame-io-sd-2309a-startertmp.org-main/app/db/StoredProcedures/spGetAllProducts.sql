@@ -20,6 +20,8 @@ BEGIN
     SELECT  PROD.Id         AS ProductId,
             PROD.Naam,
             PROD.Barcode,
+            PROD.Verpakkingseenheid,
+            PROD.AantalAanwezig,
             PROD.IsActief,
             PROD.Opmerking,
             PROD.DatumAangemaakt,

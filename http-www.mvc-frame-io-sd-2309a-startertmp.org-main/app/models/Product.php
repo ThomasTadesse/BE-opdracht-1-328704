@@ -150,19 +150,15 @@ class Product
             /**
              * Maak een sql-query die een record uit de database verwijdert
              */
-    
             $sql = 'CALL spDeleteProductById(:id)';
     
-            /**
-             * Prepare de query voor het PDO object
-             */
             $this->db->query($sql);
-    
+        
             /**
              * Koppel de parameter aan de query
              */
             $this->db->bind(':id', $ProductId, PDO::PARAM_INT);
-    
+        
             /**
              * Voer de query uit
              */ 

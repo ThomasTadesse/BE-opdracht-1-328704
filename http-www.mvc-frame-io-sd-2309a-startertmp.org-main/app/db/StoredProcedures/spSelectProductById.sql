@@ -27,7 +27,9 @@ BEGIN
             PROD.IsActief,
             PROD.Opmerking,
             PROD.DatumAangemaakt,
-            PROD.DatumGewijzigd
+            PROD.DatumGewijzigd,
+            PROD.Verpakkingseenheid,
+            PROD.AantalAanwezig
     FROM    Product AS PROD
     WHERE   PROD.Id = Id;
 

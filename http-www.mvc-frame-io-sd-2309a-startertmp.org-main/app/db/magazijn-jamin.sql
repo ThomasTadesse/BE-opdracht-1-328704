@@ -134,6 +134,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `Opmerking` varchar(255) DEFAULT NULL,
   `DatumAangemaakt` datetime DEFAULT CURRENT_TIMESTAMP,
   `DatumGewijzigd` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Verpakkingseenheid` decimal(5,2) DEFAULT NULL,
+  `AantalAanwezig` int DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -141,20 +143,20 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`Id`, `Naam`, `Barcode`, `IsActief`, `Opmerking`, `DatumAangemaakt`, `DatumGewijzigd`) VALUES
-(1, 'Mintnopjes', '8719587231278', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(2, 'Schoolkrijt', '8719587326713', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(3, 'Honingdrop', '8719587327836', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(4, 'Zure Beren', '8719587321441', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(5, 'Cola Flesjes', '8719587321237', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(6, 'Turtles', '8719587322245', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(7, 'Witte Muizen', '8719587328256', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(8, 'Reuzen Slangen', '8719587325641', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(9, 'Zoute Rijen', '8719587322739', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(10, 'Winegums', '8719587327527', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(11, 'Drop Munten', '8719587322345', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(12, 'Kruis Drop', '8719587322265', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25'),
-(13, 'Zoute Ruitjes', '8719587323256', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25');
+INSERT INTO `product` (`Id`, `Naam`, `Barcode`, `IsActief`, `Opmerking`, `DatumAangemaakt`, `DatumGewijzigd`, `Verpakkingseenheid`, `AantalAanwezig`) VALUES
+(1, 'Mintnopjes', '8719587231278', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(2, 'Schoolkrijt', '8719587326713', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(3, 'Honingdrop', '8719587327836', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(4, 'Zure Beren', '8719587321441', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(5, 'Cola Flesjes', '8719587321237', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(6, 'Turtles', '8719587322245', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(7, 'Witte Muizen', '8719587328256', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(8, 'Reuzen Slangen', '8719587325641', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(9, 'Zoute Rijen', '8719587322739', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(10, 'Winegums', '8719587327527', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(11, 'Drop Munten', '8719587322345', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(12, 'Kruis Drop', '8719587322265', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL),
+(13, 'Zoute Ruitjes', '8719587323256', b'1', NULL, '2024-10-17 12:44:25', '2024-10-17 12:44:25', NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

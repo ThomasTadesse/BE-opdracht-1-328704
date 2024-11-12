@@ -160,7 +160,9 @@ class Products extends BaseController
             'DatumAangemaaktError' => '',
             'DatumGewijzigdError' => '',
             'Verpakkingseenheid' => $result->Verpakkingseenheid ?? '-',
-            'AantalAanwezig' => $result->AantalAanwezig ?? '-'
+            'AantalAanwezig' => $result->AantalAanwezig ?? '-',
+            'VerpakkingseenheidError' => '',
+            'AantalAanwezigError' => ''
         ];
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
